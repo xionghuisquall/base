@@ -25,6 +25,7 @@ import java.util.Arrays;
  * - 最大堆、最小堆
  * - 完全二叉树
  * - 迭代完成下面步骤：堆尾部从数组最后按每次迭代前移，树的根放入数组的堆尾部，然后维护最大（小）堆的性质
+ * - 可用于实现优先队列，例如 java.util.PriorityQueue
  */
 public class HeapSorting {
     public static int left(int i) {
