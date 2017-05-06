@@ -28,6 +28,10 @@ import java.util.Arrays;
  * - 可用于实现优先队列，例如 java.util.PriorityQueue
  */
 public class HeapSorting {
+    public static int parent(int i) {
+        return (i - 1) / 2;
+    }
+
     public static int left(int i) {
         return 2 * i + 1;
     }
