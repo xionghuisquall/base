@@ -1,21 +1,13 @@
 package com.leo.base.patterns.singleton;
 
 // TODO : 还不是很理解
-public class P6_Enum {
-    public enum Singleton {
-        INSTANCE;
+public enum P6_Enum {
+    INSTANCE;
 
-        private P6_Enum instance;
-        private Singleton() {
-            instance = new P6_Enum();
-        }
-
-        public P6_Enum getInstance() {
-            return instance;
-        }
+    P6_Enum() {
+        // init
     }
 
-    public static P6_Enum getInstance() {
-        return Singleton.INSTANCE.getInstance();
+    public void whateverWorking() {
     }
 }
