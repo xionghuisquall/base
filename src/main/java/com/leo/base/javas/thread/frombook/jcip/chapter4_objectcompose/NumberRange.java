@@ -6,7 +6,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 此类是线程不安全的。
  * 因为两个状态变量一起构成了对象的不变性条件，变量之间耦合、关联。
  * 同时，该类没有对两个变量施加额外的同步保护，因而虽然lower和upper
- * 两个变量分别是AtomicInteger这种线程安全的类型，但是合起来则不是线程安全的
+ * 两个变量分别是AtomicInteger这种线程安全的类型，但是合起来则不是线程安全的.
+ *
+ * 对于此例，如果要改成线程安全的，则需要对各个方法加额外的锁
  */
 public class NumberRange {
     // 不变性条件 ： lower <= upper
