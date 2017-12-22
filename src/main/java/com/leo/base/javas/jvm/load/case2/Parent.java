@@ -1,4 +1,4 @@
-package com.leo.base.javas.jvm.load;
+package com.leo.base.javas.jvm.load.case2;
 
 /**
  * Created by estolia on 2017/8/20.
