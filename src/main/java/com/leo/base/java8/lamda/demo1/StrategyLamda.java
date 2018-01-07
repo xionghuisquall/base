@@ -1,6 +1,7 @@
 package com.leo.base.java8.lamda.demo1;
 
 public class StrategyLamda {
+    @FunctionalInterface
     public interface TaxCalculator {
         float getTax(int baseSalary, float rate);
     }
