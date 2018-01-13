@@ -1,9 +1,6 @@
 package com.leo.base.java8.book.chapter2.demo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,6 +30,19 @@ public class StreamDemo_OperateStream {
         // 形如 ['A', 'b', 'c', 'c', 'c', 'a']
         Stream<Character> characterStream = words.stream().flatMap(s -> characterStream(s));
         System.out.println(characterStream.collect(Collectors.toList()));
+
+        //
+        List<Person> persons = makePersons();
+        System.out.println(persons);
+        Stream<String> stream = persons.stream().flatMap(p ->
+            p.getHobbies().stream().map(h -> h.get("hobby")).collect(Collectors.toSet()).stream()
+        );
+        Set<String> hobbies = stream.collect(Collectors.toSet());
+        System.out.println(hobbies);
+
+        //
+        List<String> hobbies2 = persons.stream().flatMap(p -> p.getHobbies().stream()).map(h -> h.get("hobby")).distinct().collect(Collectors.toList());
+        System.out.println(hobbies2);
     }
 
     private static Stream<Character> characterStream(String word) {
@@ -41,5 +51,71 @@ public class StreamDemo_OperateStream {
             characters.add(c);
         }
         return characters.stream();
+    }
+
+    private static List<Person> makePersons() {
+        List<Person> persons = new ArrayList<>();
+
+        Person p1 = new Person();
+        p1.setId("adam");
+
+        List<Map<String, String>> hobbies = new ArrayList<>();
+        Map<String, String> hobby = new HashMap<>();
+        hobby.put("hobby", "singing");
+        hobbies.add(hobby);
+
+        hobby = new HashMap<>();
+        hobby.put("hobby", "drawing");
+        hobbies.add(hobby);
+        p1.setHobbies(hobbies);
+
+        persons.add(p1);
+
+        //
+        p1 = new Person();
+        p1.setId("jack");
+
+        hobbies = new ArrayList<>();
+        hobby = new HashMap<>();
+        hobby.put("hobby", "football");
+        hobbies.add(hobby);
+
+        hobby = new HashMap<>();
+        hobby.put("hobby", "singing");
+        hobbies.add(hobby);
+        p1.setHobbies(hobbies);
+
+        persons.add(p1);
+
+        return persons;
+    }
+
+    private static class Person {
+        private String id;
+        private List<Map<String, String>> hobbies;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public List<Map<String, String>> getHobbies() {
+            return hobbies;
+        }
+
+        public void setHobbies(List<Map<String, String>> hobbies) {
+            this.hobbies = hobbies;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "id='" + id + '\'' +
+                    ", hobbies=" + hobbies +
+                    '}';
+        }
     }
 }
